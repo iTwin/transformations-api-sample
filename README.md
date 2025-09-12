@@ -11,7 +11,7 @@ A React-based sample application demonstrating iTwin Platform Transformations Fi
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/iTwin/transformations-api-sample.git
 cd transformations-sample
 ```
 
@@ -74,4 +74,5 @@ This project is licensed under the MIT License - see the LICENSE.md file for det
 
 - [iTwin Platform Documentation](https://developer.bentley.com)
 - [Transformations API Reference](https://developer.bentley.com/apis/transformations/)
+
 - [iTwin.js Learning Resources](https://www.itwinjs.org/learning/)
