@@ -1,0 +1,34 @@
+/*---------------------------------------------------------------------------------------------
+* Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+* See LICENSE.md in the project root for license terms and full copyright notice.
+*--------------------------------------------------------------------------------------------*/
+.viewer-container {
+  height: 100vh;
+
+  .signin-content {
+    width: 400px;
+  }
+}
+
+.full-height {
+  height: 100%;
+}
+
+.margin-x-16 {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.margin-x-32 {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.input-container {
+  width: 100%;
+}
+
+.container {
+  padding: 16px;
+  height: 100%;
+}
