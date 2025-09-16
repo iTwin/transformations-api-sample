@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import { Button, Flex, ProgressLinear, Text } from "@itwin/itwinui-react";
 import React from "react";
 import { useTransformation } from "../../common/hooks/transformationsHooks";

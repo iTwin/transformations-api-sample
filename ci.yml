@@ -1,0 +1,36 @@
+# Transformations API Sample CI build
+#
+# This pipeline installs, builds and
+# is used to validate all PRs and updates to main.
+
+trigger:
+  - main
+
+pr:
+  drafts: false
+  branches:
+    include:
+      - main
+
+jobs:
+  - job: Transformations_API_Sample_Build
+    displayName: Transformations API Sample CI build
+    pool:
+      vmImage: ubuntu-latest
+    workspace:
+      clean: all
+    steps:
+      - checkout: self
+      - task: NodeTool@0
+        displayName: Use Node 22
+        inputs:
+          versionSpec: 22.17.x
+          checkLatest: true
+
+      - script: npm install
+        displayName: "npm ci"
+        workingDirectory: "transformations-sample"
+
+      - script: npm build
+        displayName: "npm run build"
+        workingDirectory: "transformations-sample"

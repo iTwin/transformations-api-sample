@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import React from "react";
 import { Button, ComboBox, Divider, Flex, Input, InputGrid, Label, ProgressRadial } from "@itwin/itwinui-react";
 import { TransformationStep } from "../../common/ui/TransformationStep";
