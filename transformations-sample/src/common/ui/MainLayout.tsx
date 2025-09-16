@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import '@itwin/itwinui-layouts-css/styles.css';
 
 import { SvgItwin } from "@itwin/itwinui-icons-react";

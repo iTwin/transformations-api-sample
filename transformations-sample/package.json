@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@bentley/icons-generic": "^1.0.34",
-    "@bentley/react-scripts": "^5.0.7",
     "@itwin/appui-abstract": "^5.0.4",
     "@itwin/appui-react": "^5.11.2",
     "@itwin/browser-authorization": "^2.0.0",
@@ -54,13 +53,8 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "vite build"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "build": "vite build",
+    "lint": "eslint \"src/**/*.{ts,tsx}\""
   },
   "browserslist": [
     "last 4 chrome version",
@@ -73,7 +67,12 @@
     "not <0.2%"
   ],
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.44.0",
+    "@typescript-eslint/parser": "^8.44.0",
     "@vitejs/plugin-react": "^5.0.2",
+    "eslint": "^9.35.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
     "vite": "^7.1.5"
   }
 }
