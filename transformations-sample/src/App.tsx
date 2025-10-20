@@ -32,12 +32,23 @@ const App: React.FC = () => {
     }, [authClient]);
 
     React.useEffect(() => {
-        login().then(() => authClient.getAccessToken().then(setAccessToken));
+        const getToken = async () => {
+            await login();
+            const token = await authClient.getAccessToken();
+            setAccessToken(token);
+        }
+
+        void getToken();
     }, [login, authClient]);
 
     React.useEffect(() => {
+        const getAccessToken = async () => {
+            const token = await authClient.getAccessToken();
+            setAccessToken(token);
+        }
+
         if (authClient.hasSignedIn) {
-            authClient.getAccessToken().then(setAccessToken);
+            void getAccessToken();
         } else {
             void login();
         }

@@ -2,9 +2,11 @@
 
 A React-based sample application demonstrating iTwin Platform Transformations Filter by Saved View transformation.
 
+![alt text](image.png)
+
 ## Prerequisites
 
-- Node.js
+- Node.js 22
 - iTwin Platform account and application registration
 
 ## Installation

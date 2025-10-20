@@ -38,38 +38,35 @@ export const CreateFilterBySavedViewForm = () => {
         return (transformationName && changesetDescription && sourceITwinId && sourceIModelId && savedViewId && targetITwinId && targetIModelName) && !isCreating;
     }, [transformationName, changesetDescription, sourceITwinId, sourceIModelId, savedViewId, targetITwinId, targetIModelName, isCreating]);
 
-    const startTransformation = () => {
+    const startTransformation = async() => {
         setIsCreating(true);
         const [scheme, token] = accessToken.split(" ");
-        iModelsClient.iModels.createEmpty({
+        const targetIModel = await iModelsClient.iModels.createEmpty({
             authorization: () => Promise.resolve({ scheme, token }),
             iModelProperties: {
                 name: targetIModelName,
                 iTwinId: targetITwinId
             }
-        }).then(targetIModel => {
-            return createConfiguration({
-                accessToken,
-                name: transformationName,
-                changesetDescription,
-                sourceIModelId,
-                targetIModelId: targetIModel.id,
-                savedViewId: savedViewId
-            });
-        }).then(configuration => {
-            sampleState.setConfigurationId(configuration.id);
-            sampleState.setTargetITwinId(targetITwinId);
-            sampleState.setTargetIModelId(configuration.targetIModelId);
-            return createTransformation(accessToken, configuration.id);
-        }).then(transformation => {
-            sampleState.setTransformationId(transformation.id);
-            setIsCreating(false);
         });
+        const configuration = await createConfiguration({
+            accessToken,
+            name: transformationName,
+            changesetDescription,
+            sourceIModelId,
+            targetIModelId: targetIModel.id,
+            savedViewId: savedViewId
+        });
+        sampleState.setConfigurationId(configuration.id);
+        sampleState.setTargetITwinId(targetITwinId);
+        sampleState.setTargetIModelId(configuration.targetIModelId);
+        const transformation = await createTransformation(accessToken, configuration.id);
+        sampleState.setTransformationId(transformation.id);
+        setIsCreating(false);
     };
 
     React.useEffect(() => {
         if (isCreating) {
-            startTransformation();
+            void startTransformation();
         }
     }, [isCreating]);
 

@@ -32,12 +32,16 @@ export interface ITwin {
 
 export const useITwins = () => {
     const accessToken = useToken();
-    const { data, error, isLoading } = useSWR("/itwins/recents", () => fetch("https://api.bentley.com/itwins/recents?subClass=Asset,Project", {
-        headers: {
-            Authorization: accessToken,
-            Accept: "application/vnd.bentley.itwin-platform.v1+json"
-        }
-    }).then(res => res.json()).then(data => data.iTwins as ITwin[]));
+    const { data, error, isLoading } = useSWR("/itwins/recents", async () => {
+        const response = await fetch("https://api.bentley.com/itwins/recents?subClass=Asset,Project", {
+            headers: {
+                Authorization: accessToken,
+                Accept: "application/vnd.bentley.itwin-platform.v1+json"
+            }
+        });
+        const data = await response.json();
+        return data.iTwins as ITwin[];
+    });
 
     return { iTwins: data, error, isLoading };
 };
@@ -49,12 +53,16 @@ export interface SavedView {
 
 export const useIModelSavedViews = (iTwinId: string | undefined, iModelId: string | undefined) => {
     const accessToken = useToken();
-    const { data, error, isLoading } = useSWR(() => iModelId && iTwinId ? `/savedViews/?iModelId=${iModelId}` : undefined, () => fetch(`https://api.bentley.com/savedViews?iTwinId=${iTwinId}&iModelId=${iModelId}`, {
-        headers: {
-            Authorization: accessToken,
-            Accept: "application/vnd.bentley.itwin-platform.v1+json"
-        }
-    }).then(res => res.json()).then(data => data.savedViews as SavedView[]));
+    const { data, error, isLoading } = useSWR(() => iModelId && iTwinId ? `/savedViews/?iModelId=${iModelId}` : undefined, async () => {
+        const response = await fetch(`https://api.bentley.com/savedViews?iTwinId=${iTwinId}&iModelId=${iModelId}`, {
+            headers: {
+                Authorization: accessToken,
+                Accept: "application/vnd.bentley.itwin-platform.v1+json"
+            }
+        });
+        const data = await response.json();
+        return data.savedViews as SavedView[];
+    });
 
     return { savedViews: data, error, isLoading };
 }
